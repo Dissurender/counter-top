@@ -2,7 +2,7 @@ import { parseArgs } from "node:util";
 import { readFileSync } from "node:fs";
 
 const num = [0];
-async function main() {
+function main() {
   const {
     values: { file, word, line, bytes },
   } = parseArgs({
@@ -46,7 +46,7 @@ async function main() {
 
   try {
     const test = console.log(file);
-    const data = await readFileSync(file, "utf8");
+    const data = readFileSync(file, "utf8");
     const test2 = console.log(file);
 
     ++num[0];
