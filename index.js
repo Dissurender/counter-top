@@ -1,7 +1,6 @@
 import { parseArgs } from "node:util";
 import { readFileSync } from "node:fs";
 
-const num = [0];
 function main() {
   const {
     values: { file, word, line, bytes },
@@ -33,7 +32,6 @@ function main() {
   const args = process.argv.slice(2);
   const options = { word, line, bytes };
 
-  num[0]++;
   if (file === "not") {
     console.error(
       "Incorrect number of arguments.\n" +
@@ -45,11 +43,8 @@ function main() {
   }
 
   try {
-    const test = console.log(file);
-    const data = readFileSync(file, "utf8");
-    const test2 = console.log(file);
+    const data = readFileSync(file, 'utf-8')
 
-    ++num[0];
     if (line) {
       countLine(data);
     }
@@ -80,7 +75,8 @@ const countWord = (data) => {
 };
 
 const countBytes = (data) => {
-  console.log(data.length, "bytes");
+  const blob = new Blob([data]).size;
+  console.log(blob, "bytes");
 };
 
-console.log(await main());
+main();
